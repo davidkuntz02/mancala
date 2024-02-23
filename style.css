@@ -1,18 +1,44 @@
-
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .pit{
-    display: inline;
+    height: 30vmin;
 }
 .store{
-
+    height: 60vmin;
+}
+.pit, .store{
+    width: 20vmin;
+    padding: 2vmin;
+    box-sizing: border-box;
+    background-color: chocolate;
+}
+.depth{
+    width: 100%;
+    height: 100%;
+    border-radius: 6vmin;
+    box-shadow: 2px 2px 5px #222 inset;
 }
 .marble{
 
 }
 .row{
-
+    display: flex;
+}
+.box{
+    display: flex;
+    flex-direction: column;
 }
 #board{
-
+    background-color: chocolate;
+    display: flex;
+    width: 160vmin;
+    border-radius: 4vmin;
+    /* padding: 4vmin; */
+    border: 4vmin solid chocolate;
+    /* overflow: hidden; */
 }
 #p1row{
 
@@ -21,8 +47,10 @@
     
 }
 #p1store{
+    border-radius: 2vmin 0 0 2vmin;
 
 }
 #p2store{
+    border-radius: 0 2vmin 2vmin 0;
     
 }
