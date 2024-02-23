@@ -20,9 +20,22 @@
     height: 100%;
     border-radius: 6vmin;
     box-shadow: 2px 2px 5px #222 inset;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    padding: 2vmin;
+    
 }
 .marble{
-
+    background-color: red;
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 100%;
+    z-index: 9;
+    box-shadow: -2px -2px 5px #222 inset;
 }
 .row{
     display: flex;
