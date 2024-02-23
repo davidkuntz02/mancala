@@ -1,7 +1,7 @@
-# mancala
+# Mancala
 NMSU CS-382 Spring 2024 Web Game Project Mancala
 
-# The rules of Mancala taken from officialgamerules.org: 
+## The rules of Mancala taken from officialgamerules.org: 
 
 ## Mancala Rules
 What You Need:
@@ -10,7 +10,6 @@ What You Need:
 
 - 48 markers
 
-​
 ## Setup
 
 The Mancala 'board' is made up of two rows of six holes, or pits, each. If you don't have a Mancala board handy, an empty egg carton can work. Next, four pieces -- marbles or stones -- are placed in each of the 12 holes. The color of the pieces is irrelevant.
