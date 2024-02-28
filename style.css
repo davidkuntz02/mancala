@@ -26,13 +26,17 @@ body{
     padding: 0 3vmin;
     margin: 1vmin;
 }
+/* yourTurn class? */
+.column>.pit:hover{
+    box-shadow: 0 0 5px 5px blueviolet;
+}
 .pit.store{
     width: 42vmin;
 }
 .marble{
     background-color: red;
-    width: 2vmin;
-    height: 2vmin;
+    width: 2.3vmin;
+    height: 2.3vmin;
     border-radius: 100%;
     box-shadow: -2px -2px 3px #522 inset;
 }
@@ -42,27 +46,41 @@ body{
 }
 .box{
     display: flex;
+    justify-content: center;
+}
+.player1{
+    background-color: blanchedalmond;
+}
+.player2{
+    background-color: maroon;
 }
 #board{
-    background-color: chocolate;
+    background-color: sandybrown;
     display: flex;
     flex-direction: column;
-    /* width: 160vmin; */
     border-radius: 4vmin;
-    /* padding: 4vmin; */
-    border: 2vmin solid chocolate;
-    /* overflow: hidden; */
-    box-shadow: 3px 3px 6px #222;
+    border: 2vmin solid sandybrown;
+    box-shadow: 4px 4px 6px #222;
 }
-#p1row{
 
-}
-#p2row{
-    
-}
-#p1store{
-
-}
-#p2store{
-    
+@media screen and (max-width: 600px) {
+    .container{
+        flex-direction: column;
+    }
+    #board{
+        box-shadow: 6px 6px 8px #222;
+    }
+    .pit{
+        width: 40vmin;
+        height: 20vmin;
+        box-shadow: 4px 4px 6px #222 inset;
+    }
+    .pit.store{
+        width: 82vmin;
+    }
+    .marble{
+        width: 4vmin;
+        height: 4vmin;
+        box-shadow: -4px -4px 6px #522 inset;
+    }
 }
