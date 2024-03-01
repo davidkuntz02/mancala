@@ -26,8 +26,7 @@ body{
     padding: 0 3vmin;
     margin: 1vmin;
 }
-/* yourTurn class? */
-.column>.pit:hover{
+.yourturn.column>.pit:hover{
     box-shadow: 0 0 5px 5px blueviolet;
 }
 .pit.store{

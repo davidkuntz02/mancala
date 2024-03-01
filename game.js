@@ -1,6 +1,7 @@
 window.onload = function(){
     //initial state
-    var gameState = [0,4,4,4,4,4,4,0,4,4,4,4,4,4];
+    var gameState = [0,1,2,3,4,5,6,0,8,9,10,11,12,13];
+    console.log(gameState);
 
     var marbles = []; //idk if i need this or not
     
@@ -31,41 +32,60 @@ window.onload = function(){
         p2store : document.getElementById('p2store'),
         initialize : function(){
             console.log("initializing");
+            // var player2row = this.board.slice(1,7); //this syntax really bugs me...
+            // var player1row = this.board.slice(8,14);
+            
             //insert pits and stores into board
             //player 2 store
-            let store2 = document.createElement("div");
-            store2.setAttribute('class', "player2 pit store");
-            store2.setAttribute('id', "store0");
-            this.p2store.append(store2);
-            //add pit function
-            //player 2 row
-            for(let i=8; i<14; i++){
+            for(let i=13; i>7; i--){
                 let pit = document.createElement("div");
                 pit.setAttribute('class', "player2 pit");
                 pit.setAttribute('id', "pit"+i);
-                //insert 4 marbles (consider making this a function??)
-                for(let j=0; j<4; j++){
-                    let marble = document.createElement("div");
-                    marble.setAttribute('class', "marble");
-                    pit.append(marble);
-                    //add marble function
-                }
-                this.p1row.append(pit);
-                //add pit function obj
-            }
-            //player 1 row
-            for(let i=6; i>0; i--){
-                let pit = document.createElement("div");
-                pit.setAttribute('class', "player1 pit");
-                pit.setAttribute('id', "pit"+i);
-                //insert 4 marbles
-                for(let j=0; j<4; j++){
+                //insert marbles
+                for(let j=0; j<this.board[i];j++){
                     let marble = document.createElement("div");
                     marble.setAttribute('class', "marble");
                     pit.append(marble);
                     //add marble function
                 }
                 this.p2row.append(pit);
+            }
+            //insert pits and stores into board
+            //player 2 store
+            let store2 = document.createElement("div");
+            store2.setAttribute('class', "player2 pit store");
+            store2.setAttribute('id', "store0");
+            this.p2store.append(store2);
+            
+            //add pit function
+            //player 2 row
+            // for(let i=8; i<14; i++){
+            //     let pit = document.createElement("div");
+            //     pit.setAttribute('class', "player2 pit");
+            //     pit.setAttribute('id', "pit"+i);
+            //     //insert 4 marbles (consider making this a function??)
+            //     for(let j=0; j<4; j++){
+            //         let marble = document.createElement("div");
+            //         marble.setAttribute('class', "marble");
+            //         pit.append(marble);
+            //         //add marble function
+            //     }
+            //     this.p2row.append(pit);
+            //     //add pit function obj
+            // }
+            //player 1 row
+            for(let i=1; i<7; i++){
+                let pit = document.createElement("div");
+                pit.setAttribute('class', "player1 pit");
+                pit.setAttribute('id', "pit"+i);
+                //insert 4 marbles
+                for(let j=0; j<this.board[i]; j++){
+                    let marble = document.createElement("div");
+                    marble.setAttribute('class', "marble");
+                    pit.append(marble);
+                    //add marble function
+                }
+                this.p1row.append(pit);
                 //add pit function obj
             }
             //player 1 store
