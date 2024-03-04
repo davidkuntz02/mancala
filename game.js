@@ -1,9 +1,13 @@
+//NMSU CS382 Simple Multiplayer Game Project Mancala
+//Kuntz
+
 window.onload = function(){
     //initial state
-    var gameState = [0,1,2,3,4,5,6,0,8,9,10,11,12,13];
-    console.log(gameState);
+    // var gameState = [0,4,4,4,4,4,4,0,4,4,4,4,4,4];
+    var gameState = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 
     var marbles = []; //idk if i need this or not
+    var countMarbles = 48;
     
     //marble object functions (or are these pit functions?)
 
@@ -32,11 +36,27 @@ window.onload = function(){
         p2store : document.getElementById('p2store'),
         initialize : function(){
             console.log("initializing");
-            // var player2row = this.board.slice(1,7); //this syntax really bugs me...
-            // var player1row = this.board.slice(8,14);
+            p2marbs = this.board.slice(8,14);
+            p1marbs = this.board.slice(1,7);
+            console.log(p1marbs);
             
             //insert pits and stores into board
             //player 2 store
+            let store2 = document.createElement("div");
+            store2.setAttribute('class', "player2 pit store");
+            store2.setAttribute('id', "store0");
+            //insert marbles (is this one unnecessary?)
+            for(let i=0; i<this.board[0];i++){
+                let marble = document.createElement("div");
+                marble.setAttribute('class', "marble");
+                marble.setAttribute('id', "m"+countMarbles);
+                countMarbles -= 1;
+                store2.append(marble);
+                //add marble function
+            }
+            this.p2store.append(store2);
+            //add pit function
+            //player 2 row
             for(let i=13; i>7; i--){
                 let pit = document.createElement("div");
                 pit.setAttribute('class', "player2 pit");
@@ -45,34 +65,14 @@ window.onload = function(){
                 for(let j=0; j<this.board[i];j++){
                     let marble = document.createElement("div");
                     marble.setAttribute('class', "marble");
+                    marble.setAttribute('id', "m"+countMarbles);
+                    countMarbles -= 1;
                     pit.append(marble);
-                    //add marble function
+                    //add marble function?
                 }
                 this.p2row.append(pit);
             }
-            //insert pits and stores into board
-            //player 2 store
-            let store2 = document.createElement("div");
-            store2.setAttribute('class', "player2 pit store");
-            store2.setAttribute('id', "store0");
-            this.p2store.append(store2);
-            
-            //add pit function
-            //player 2 row
-            // for(let i=8; i<14; i++){
-            //     let pit = document.createElement("div");
-            //     pit.setAttribute('class', "player2 pit");
-            //     pit.setAttribute('id', "pit"+i);
-            //     //insert 4 marbles (consider making this a function??)
-            //     for(let j=0; j<4; j++){
-            //         let marble = document.createElement("div");
-            //         marble.setAttribute('class', "marble");
-            //         pit.append(marble);
-            //         //add marble function
-            //     }
-            //     this.p2row.append(pit);
-            //     //add pit function obj
-            // }
+
             //player 1 row
             for(let i=1; i<7; i++){
                 let pit = document.createElement("div");
@@ -82,6 +82,8 @@ window.onload = function(){
                 for(let j=0; j<this.board[i]; j++){
                     let marble = document.createElement("div");
                     marble.setAttribute('class', "marble");
+                    marble.setAttribute('id', "m"+countMarbles);
+                    countMarbles -= 1;
                     pit.append(marble);
                     //add marble function
                 }
@@ -92,18 +94,36 @@ window.onload = function(){
             let store1 = document.createElement("div");
             store1.setAttribute('class', "player1 pit store");
             store1.setAttribute('id', "store0");
+            //insert marbles
+            for(let i=0; i<this.board[7];i++){
+                let marble = document.createElement("div");
+                marble.setAttribute('class', "marble");
+                marble.setAttribute('id', "m"+countMarbles);
+                countMarbles -= 1;
+                store1.append(marble);
+                //add marble function
+            }
             this.p1store.append(store1);
             //add pit function
-        }
+            
+        },//init
     }
 
     Board.initialize();
 
     // Events go here
 
+    //reset game listener
+
+    //pit mouseover listener?
     
-    //pit onclick (hover?) listener
+    //pit onclick listener
         //call the walk marbles function
+        //highlighting pits
+        // document.getElementById("store"+0).style.backgroundColor = "lightblue";
+        //switch turns
+        // document.getElementById("p1row").classList.remove("yourturn");
+        // document.getElementById("p2row").classList.add("yourturn");
 
     console.log("end");
 }
