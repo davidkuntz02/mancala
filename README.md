@@ -19,7 +19,7 @@ Each player has a 'store' to the right side of the Mancala board. (Cereal bowls 
  
 ## Play
 
-The game begins with one player picking up all of the pieces in any one of the holes on his side.Moving counter-clockwise, the player deposits one of the stones in each hole until the stones run out.
+The game begins with one player picking up all of the pieces in any one of the holes on his side. Moving counter-clockwise, the player deposits one of the stones in each hole until the stones run out.
 
 1. If you run into your own store, deposit one piece in it. If you run into your opponent's store, skip it.
 
