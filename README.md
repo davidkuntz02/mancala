@@ -1,23 +1,25 @@
 # Mancala
-NMSU CS-382 Spring 2024 Web Game Project Mancala
+## NMSU CS-382 Spring 2024 Web Game Project Mancala (Kalah)
 
-## The rules of Mancala taken from officialgamerules.org: 
+Mancala is a family of board games, of which Kalah is the most popular variant in the West. officialgamerules.org posts the rules for Kalah under their page of rules for Mancala.
 
-## Mancala Rules
+## The rules of Mancala (Kalah) taken from [officialgamerules.org/mancala:](www.officialgamerules.org/mancala) 
+
+### Mancala Rules
 What You Need:
 
 - Mancala board
 
 - 48 markers
 
-## Setup
+### Setup
 
 The Mancala 'board' is made up of two rows of six holes, or pits, each. If you don't have a Mancala board handy, an empty egg carton can work. Next, four pieces -- marbles or stones -- are placed in each of the 12 holes. The color of the pieces is irrelevant.
  
 Each player has a 'store' to the right side of the Mancala board. (Cereal bowls work well for this purpose.)
 
  
-## Play
+### Play
 
 The game begins with one player picking up all of the pieces in any one of the holes on his side. Moving counter-clockwise, the player deposits one of the stones in each hole until the stones run out.
 
@@ -30,11 +32,11 @@ The game begins with one player picking up all of the pieces in any one of the h
 4. Always place all captured pieces in your store.
 
  
-## Winning the game
+### Winning the game
 
 The game ends when all six spaces on one side of the Mancala board are empty. The player who still has pieces on his side of the board when the game ends captures all of those pieces. Count all the pieces in each store. The winner is the player with the most pieces.
 
  
-## Tips:
+### Tips:
 
 Planning ahead is essential to victory in board games like Mancala. Try to plan two or three moves into the future.

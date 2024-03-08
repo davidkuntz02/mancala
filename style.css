@@ -1,6 +1,12 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: sienna;
+    font-family: Consolas, sans-serif;
+}
+a{
+    text-decoration: none;
+    color: limegreen;
 }
 .container{
     display: flex;
@@ -25,9 +31,6 @@ body{
     box-sizing: border-box;
     padding: 0 3vmin;
     margin: 1vmin;
-}
-.yourturn.column>.pit:hover{
-    box-shadow: 0 0 5px 5px blueviolet;
 }
 .pit.store{
     width: 42vmin;
@@ -60,6 +63,11 @@ body{
     border-radius: 4vmin;
     border: 2vmin solid sandybrown;
     box-shadow: 4px 4px 6px #222;
+}
+#menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media screen and (max-width: 600px) {

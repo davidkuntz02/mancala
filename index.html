@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- NMSU CS382 Simple Multiplayer Game Project Mancala 
+    David Kuntz -->
 <head>
     <title>Mancala &#40;Kalah&#41;</title>
     <link rel="shortcut icon" href="./favicon.ico">
@@ -9,13 +11,17 @@
 <body>
     <div class="container">
         <div class="row">
-            menu goes here
-            <br>
-            reset button 
-            <br>
-            player turn indicator
-            <br>
-            score display
+            <div id="menu" >
+                <h1>Mancala &#40;Kalah&#41;</h1>
+                <h3>Player 2 Score</h3>
+                <h2 id="p2score"></h2>
+                <h3>Player 1 Score</h3>
+                <h2 id="p1score"></h2>
+                <h3><button id="reset">Reset Game</button></h3>
+                <button id="win" title="Winning a game against yourself would take too long. Press this to trigger the win conditions.">Win</button>
+                <h3><a target="_blank" href="http://officialgamerules.org/mancala">Rules</a></h3>
+            </div>
+
         </div>
         <div class="row">
             <div id="board">
