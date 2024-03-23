@@ -2,7 +2,7 @@
 //David Kuntz
 //design inspiration taken from HTML5 Checkers on jasonlawrencewong.com/checkers
 
-window.onload = function(){
+window.onload = function () {
 
     // //sleep function takes milliseconds parameter (too difficult to make this work)
     // const sleep = function(ms) {
@@ -10,45 +10,45 @@ window.onload = function(){
     // }
 
     //initial state
-    var gameState = [0,4,4,4,4,4,4,0,4,4,4,4,4,4];
-    var testState = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+    var gameState = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
+    var testState = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
     //objects array
     var pits = [];
-    
-    //marble object functions (or are these pit functions?)
-    function Pit (element,position,marbsInit){
+
+    //pit functions?
+    function Pit(element, position, marbsInit) {
         this.element = element;
         this.position = position;
         this.marbs = marbsInit;
         //walk marbles is where the magic happens
-        this.walk = function(){
+        this.walk = function () {
             //take all marbles from pit
             let marbsInHand = this.marbs;
             //for (marbs) traverse pits COUNTER-clockwise depositing marbles
-            for(let i=1;i<=marbsInHand;i++){
+            for (let i = 1; i <= marbsInHand; i++) {
                 //position of the next pit = (position + i) % 14
-                let thisPit = pits[(position+i)%14];
+                let thisPit = pits[(position + i) % 14];
                 //last pit
-                if(i==marbsInHand){
+                if (i == marbsInHand) {
                     //if last pit lands on other side (and not your store) end turn
-                    if(thisPit.getID() != Board.captureTarget 
-                    && !thisPit.element.parentNode.classList.contains('yourturn')){
+                    if (thisPit.getID() != Board.captureTarget
+                        && !thisPit.element.parentNode.classList.contains('yourturn')) {
                         console.log("Marble landed on other side. End turn.")
                         Board.endTurn();
-                    }else{
+                    } else {
                         //if last pit is the store keep going
-                        if(thisPit.getID() == Board.captureTarget){
+                        if (thisPit.getID() == Board.captureTarget) {
                             console.log("Marble landed in your store. Free turn!");
-                        }else{
+                        } else {
                             //if last pit is empty and not store capture adjacent marbles and end turn
-                            if(thisPit.isEmpty()){
+                            if (thisPit.isEmpty()) {
                                 console.log("Capture adjacent marbles.");
                                 //adjacent pit position = 14 - position 
                                 let adjacentPit = pits[14 - thisPit.position];
                                 //place a marble before you capture the marble, silly!!!!!!!
-                                addMarbles(thisPit.element,1);
-                                thisPit.setMarbs(thisPit.getMarbs()+1);
+                                addMarbles(thisPit.element, 1);
+                                thisPit.setMarbs(thisPit.getMarbs() + 1);
                                 //remove a marble element from home pit
                                 this.element.removeChild(element.firstChild);
                                 this.marbs -= 1;
@@ -56,7 +56,7 @@ window.onload = function(){
                                 adjacentPit.captureMarbs(pits[Board.captureTarget]);
                                 Board.endTurn();
                                 continue;
-                            }else{
+                            } else {
                                 Board.endTurn();
                             };
                             // //seed on variant implementation (decided not to do this)
@@ -86,50 +86,50 @@ window.onload = function(){
                     }
                 };
                 //skip opponent store
-                if(thisPit.getID() === Board.skipTarget){
-                    marbsInHand++; 
-                }else{
+                if (thisPit.getID() === Board.skipTarget) {
+                    marbsInHand++;
+                } else {
                     //remove a marble element
                     this.element.removeChild(element.firstChild);
                     this.marbs -= 1;
                     //place a marble in the next pit
-                    addMarbles(thisPit.element,1);
-                    thisPit.setMarbs(thisPit.getMarbs()+1);
+                    addMarbles(thisPit.element, 1);
+                    thisPit.setMarbs(thisPit.getMarbs() + 1);
                 }
                 //update score
-                if(thisPit.getID() == Board.captureTarget){
+                if (thisPit.getID() == Board.captureTarget) {
                     console.log("Marble captured.");
                     Board.updateScore();
                 }
             }; //loop
         }
-        this.isEmpty = function(){
-            if(this.element.hasChildNodes()) return false;
+        this.isEmpty = function () {
+            if (this.element.hasChildNodes()) return false;
             return true;
         }
-        this.getID = function(){
+        this.getID = function () {
             return this.element.getAttribute('id');
         }
-        this.getMarbs = function(){
+        this.getMarbs = function () {
             return this.marbs;
         }
-        this.setMarbs = function(newMarbs){
+        this.setMarbs = function (newMarbs) {
             this.marbs = newMarbs;
         }
         //capture marbles (marbles dest should be pits[captureTarget]
         //-but it doesn't have to be)
-        this.captureMarbs = function(dest){
+        this.captureMarbs = function (dest) {
             //take all marbles from pit
             let marbsInHand = this.marbs;
-            for(let i=1;i<=marbsInHand;i++){
+            for (let i = 1; i <= marbsInHand; i++) {
                 //remove a marble element
                 this.element.removeChild(element.firstChild);
                 this.marbs -= 1;
                 //place a marble in the next pit
-                addMarbles(dest.element,1);
-                dest.setMarbs(dest.getMarbs()+1);
+                addMarbles(dest.element, 1);
+                dest.setMarbs(dest.getMarbs() + 1);
                 //update score
-                if(dest.getID() == Board.captureTarget){
+                if (dest.getID() == Board.captureTarget) {
                     Board.updateScore();
                 }
             }
@@ -137,31 +137,31 @@ window.onload = function(){
     }//pit
 
     //add n marbles to element function
-    function addMarbles(element, n){
+    function addMarbles(element, n) {
         this.element = element;
         this.n = n;
-        for(let i=0;i<n;i++){
+        for (let i = 0; i < n; i++) {
             let marble = document.createElement("div");
             marble.setAttribute('class', "marble");
             element.append(marble);
         }
     }
-    
-    
+
+
     //board object
     var Board = {
-        board : gameState,
-        score : {player1: 0, player2: 0},
-        playerTurn : 1,
-        captureTarget : 7,
-        skipTarget : 0,
-        p1row : document.getElementById('p1row'),
-        p2row : document.getElementById('p2row'),
-        p1store : document.getElementById('p1store'),
-        p2store : document.getElementById('p2store'),
-        p1score : document.getElementById('p1score'),
-        p2score : document.getElementById('p2score'),
-        initialize : function(){
+        board: gameState,
+        score: { player1: 0, player2: 0 },
+        playerTurn: 1,
+        captureTarget: 7,
+        skipTarget: 0,
+        p1row: document.getElementById('p1row'),
+        p2row: document.getElementById('p2row'),
+        p1store: document.getElementById('p1store'),
+        p2store: document.getElementById('p2store'),
+        p1score: document.getElementById('p1score'),
+        p2score: document.getElementById('p2score'),
+        initialize: function () {
             console.log("initializing");
             //insert pits and stores into board
             //player 2 store
@@ -172,31 +172,31 @@ window.onload = function(){
             addMarbles(store2, this.board[0]);
             this.p2store.append(store2);
             //add pit function
-            pits[0] = new Pit(store2,0,this.board[0]); 
+            pits[0] = new Pit(store2, 0, this.board[0]);
             console.log(pits[0]);
 
             //player 2 row
-            for(let i=13; i>7; i--){
+            for (let i = 13; i > 7; i--) {
                 let pit = document.createElement("div");
                 pit.setAttribute('class', "player2 pit");
                 pit.setAttribute('id', i);
                 addMarbles(pit, this.board[i]);
                 this.p2row.append(pit);
                 //add pit function
-                pits[i] = new Pit(pit,i,this.board[i]); 
+                pits[i] = new Pit(pit, i, this.board[i]);
                 console.log(pits[i]);
             }
 
             //player 1 row
-            for(let i=1; i<7; i++){
+            for (let i = 1; i < 7; i++) {
                 let pit = document.createElement("div");
                 pit.setAttribute('class', "player1 pit");
                 pit.setAttribute('id', i);
                 addMarbles(pit, this.board[i]);
                 this.p1row.append(pit);
-                
+
                 //add pit function
-                pits[i] = new Pit(pit,i,this.board[i]); 
+                pits[i] = new Pit(pit, i, this.board[i]);
                 console.log(pits[i]);
             }
             //player 1 store
@@ -207,7 +207,7 @@ window.onload = function(){
             addMarbles(store1, this.board[7]);
             this.p1store.append(store1);
             //add pit function
-            pits[7] = new Pit(store1,7,this.board[7]); 
+            pits[7] = new Pit(store1, 7, this.board[7]);
             console.log(pits[7]);
 
             //initialize scores
@@ -220,24 +220,24 @@ window.onload = function(){
             // if(!pitone.hasChildNodes()){console.log("empty");};
 
             // pits[6].captureMarbs(pits[this.captureTarget]);
-            
+
             //highlighting pits
             // document.getElementById("store"+0).style.backgroundColor = "lightblue";
             //switch turns
             // document.getElementById("p1row").classList.toggle("yourturn");
 
         },
-        checkIfAnybodyWon : function(){
+        checkIfAnybodyWon: function () {
             let side1IsEmpty = true;
             let side2IsEmpty = true;
-            let side1 = pits.slice(1,7);
-            let side2 = pits.slice(8,14); 
+            let side1 = pits.slice(1, 7);
+            let side2 = pits.slice(8, 14);
             //check if side1 or side2 are empty
-            for(let i=0; i<6; i++){
-                if(!side1[i].isEmpty()) side1IsEmpty = false; 
-                if(!side2[i].isEmpty()) side2IsEmpty = false; 
+            for (let i = 0; i < 6; i++) {
+                if (!side1[i].isEmpty()) side1IsEmpty = false;
+                if (!side2[i].isEmpty()) side2IsEmpty = false;
             }
-            if(side1IsEmpty || side2IsEmpty) {
+            if (side1IsEmpty || side2IsEmpty) {
                 //somebody won
                 window.alert("Win!");
                 console.log("Win!");
@@ -245,36 +245,36 @@ window.onload = function(){
                 this.p1row.classList.remove("yourturn");
                 this.p2row.classList.remove("yourturn");
                 console.log('Capture all the marbs');
-                if(!side1IsEmpty){
-                    for(let i=1; i<7; i++){
+                if (!side1IsEmpty) {
+                    for (let i = 1; i < 7; i++) {
                         pits[i].captureMarbs(pits[7]);
                     }
-                }else if(!side2IsEmpty){
-                    for(let i=8; i<14; i++){
+                } else if (!side2IsEmpty) {
+                    for (let i = 8; i < 14; i++) {
                         pits[i].captureMarbs(pits[0]);
                     }
                 }
                 //find out who won
-                if(this.score.player1>this.score.player2){
+                if (this.score.player1 > this.score.player2) {
                     window.alert("Player 1 Won!");
-                }else if(this.score.player1==this.score.player2){
+                } else if (this.score.player1 == this.score.player2) {
                     window.alert("It's a tie!");
-                }else{
+                } else {
                     window.alert("Player 2 Won!");
                 }
                 return true;
             }
             return false;
         },
-        yourSide : function(){
-            return this.playerTurn==1 ? this.p1row: this.p2row;
+        yourSide: function () {
+            return this.playerTurn == 1 ? this.p1row : this.p2row;
         },
-        endTurn : function(){
-            if(this.playerTurn == 1){
+        endTurn: function () {
+            if (this.playerTurn == 1) {
                 this.playerTurn = 2;
                 this.captureTarget = 0;
                 this.skipTarget = 7;
-            }else{
+            } else {
                 this.playerTurn = 1;
                 this.captureTarget = 7;
                 this.skipTarget = 0;
@@ -283,12 +283,12 @@ window.onload = function(){
             this.p2row.classList.toggle("yourturn");
         },
         //increases current player score by 1 when called
-        updateScore : function(){
-            this.playerTurn == 1 ? this.score.player1 += 1: this.score.player2 += 1;
+        updateScore: function () {
+            this.playerTurn == 1 ? this.score.player1 += 1 : this.score.player2 += 1;
             this.p1score.innerText = this.score.player1;
             this.p2score.innerText = this.score.player2;
         },
-        clear : function(){
+        clear: function () {
             location.reload();
         }
     }
@@ -298,30 +298,30 @@ window.onload = function(){
     // Events go here
 
     //reset game listener
-    document.getElementById('reset').addEventListener('click', ()=>{
+    document.getElementById('reset').addEventListener('click', () => {
         Board.clear();
     })
 
     //pit onclick listener
-    function setWalkListener(){
-        document.querySelectorAll('.column>.pit').forEach(e =>{
-            e.addEventListener('click', (e)=>{
-                if(e.target.parentNode.classList.contains('yourturn')){
+    function setWalkListener() {
+        document.querySelectorAll('.column>.pit').forEach(e => {
+            e.addEventListener('click', (e) => {
+                if (e.target.parentNode.classList.contains('yourturn')) {
                     pitNum = e.target.getAttribute("id");
-                    if(pitNum !== undefined 
-                        && pits[pitNum] !== undefined 
-                        && !pits[pitNum].isEmpty()){
+                    if (pitNum !== undefined
+                        && pits[pitNum] !== undefined
+                        && !pits[pitNum].isEmpty()) {
                         //call the walk marbles function
                         pits[pitNum].walk();
                     }
                     Board.checkIfAnybodyWon();
-                }else{
+                } else {
                     console.log("Not your turn.");
                 }
             });
             //js dynamic styling 
             //pit mouseover listener
-            e.addEventListener('mouseover', (e)=>{
+            e.addEventListener('mouseover', (e) => {
                 if (!e.target.classList.contains('marble')) {
                     //highlight pit
                     if (e.target.parentNode.classList.contains('yourturn')) {
@@ -330,7 +330,7 @@ window.onload = function(){
                 }
             });
             //pit mouseout listener
-            e.addEventListener('mouseout', (e)=>{
+            e.addEventListener('mouseout', (e) => {
                 if (!e.target.classList.contains('marble')) {
                     e.target.style.boxShadow = "3px 3px 6px #222 inset";
                 }
@@ -339,8 +339,8 @@ window.onload = function(){
     }
 
     //win button
-    document.getElementById('win').addEventListener('click', ()=>{
-        for(let i=1;i<7;i++){
+    document.getElementById('win').addEventListener('click', () => {
+        for (let i = 1; i < 7; i++) {
             pits[i].captureMarbs(pits[Board.captureTarget]);
         }
         Board.checkIfAnybodyWon();
