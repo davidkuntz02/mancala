@@ -1,5 +1,5 @@
 Setup
-    Make sure npm and Node.js is installed.
+    Make sure npm and Node.js are installed.
 
     Run the following terminal commands to install neseccary packages:
     $ npm install socket.io
@@ -9,4 +9,4 @@ Setup
     $ node server
 
     Closing the server:
-    Ctrl + c ?
+    Ctrl + c 

@@ -6,11 +6,8 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+//serve public directory
 app.use(express.static("public"));
-
-// app.get('/', function(req, res){
-//   res.sendFile(appDir + '/public/index.html');
-// });
 
 io.on('connection', function(socket){
   console.log('a user connected');
