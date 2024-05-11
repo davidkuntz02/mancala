@@ -1,4 +1,4 @@
-# Mancala (Serverless Version)
+# Mancala (Serverless Version) [[PLAY HERE]](https://davidkuntz02.github.io/mancala/)
 ## NMSU CS-382 Spring 2024 Web Game Project Mancala (Kalah)
 
 Mancala is a family of board games, of which Kalah is the most popular variant in the West. officialgamerules.org posts the rules for Kalah under their page of rules for Mancala.
