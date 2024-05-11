@@ -4,14 +4,9 @@
 
 window.onload = function () {
 
-    // //sleep function takes milliseconds parameter (too difficult to make this work)
-    // const sleep = function(ms) {
-    //     return new Promise(resolve => setTimeout(resolve, ms));
-    // }
-
     //initial state
     var gameState = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
-    var testState = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    // var testState = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
     //objects array
     var pits = [];
