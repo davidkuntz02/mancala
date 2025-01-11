@@ -1,0 +1,2 @@
+Issue: Game loses track of marble count in the process of moving them before game can end.
+

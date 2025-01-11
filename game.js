@@ -6,7 +6,10 @@ window.onload = function () {
 
     //initial state
     var gameState = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
-    // var testState = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    var testState = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    var twoState = [0,2,2,2,2,2,2,0,2,2,2,2,2,2];
+    var threeState = [0,3,3,3,3,3,3,0,3,3,3,3,3,3];
+    
 
     //objects array
     var pits = [];
@@ -145,7 +148,7 @@ window.onload = function () {
 
     //board object
     var Board = {
-        board: gameState,
+        board: threeState,
         score: { player1: 0, player2: 0 },
         playerTurn: 1,
         captureTarget: 7,
@@ -250,6 +253,7 @@ window.onload = function () {
                     }
                 }
                 //find out who won
+                //TODO: Come up with a better way to display result than window.alert()
                 if (this.score.player1 > this.score.player2) {
                     window.alert("Player 1 Won!");
                 } else if (this.score.player1 == this.score.player2) {
@@ -306,7 +310,7 @@ window.onload = function () {
                     if (pitNum !== undefined
                         && pits[pitNum] !== undefined
                         && !pits[pitNum].isEmpty()) {
-                        //call the walk marbles function
+                        //call the walk marbles function if target pit has marbs
                         pits[pitNum].walk();
                     }
                     Board.checkIfAnybodyWon();
@@ -320,15 +324,36 @@ window.onload = function () {
                 if (!e.target.classList.contains('marble')) {
                     //highlight pit
                     if (e.target.parentNode.classList.contains('yourturn')) {
-                        e.target.style.boxShadow = "0 0 5px 5px blueviolet";
+                        e.target.style.boxShadow = "0 0 5px 5px lawngreen"; //blueviolet
+                        //highlight pits based on how many marbles you can drop
+                        //get number of marbles in e
+                        if(e.target.children.length != 0){
+                            //marbs + target id
+                            let eid = Number(e.target.getAttribute("id"));
+                            let emarbs = e.target.childElementCount + eid;
+                            for(let i=eid+1; i<=emarbs; i++){
+                                //set box shadow on pits
+                                let id = i%14;
+                                document.getElementById(id).style.boxShadow = "0 0 5px 5px mediumaquamarine";
+                                // TODO: check if last pit is empty
+                                // if(i==emarbs){
+                                //     if()
+                                // }
+                            }
+                        }
                     }
+
                 }
             });
             //pit mouseout listener
             e.addEventListener('mouseout', (e) => {
-                if (!e.target.classList.contains('marble')) {
-                    e.target.style.boxShadow = "3px 3px 6px #222 inset";
+                //remove shadow from all pits
+                for(let i=0; i<14; i++){
+                    document.getElementById(i).style.boxShadow = "3px 3px 6px #222 inset";
                 }
+                // if (!e.target.classList.contains('marble')) {
+                //     e.target.style.boxShadow = "3px 3px 6px #222 inset";
+                // }
             });
         });
     }
