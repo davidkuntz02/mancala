@@ -43,6 +43,7 @@ a{
     height: 2.3vmin;
     border-radius: 100%;
     box-shadow: -2px -2px 3px #522 inset;
+    pointer-events: none; /*mouseover fix*/
 }
 .column{
     display: flex;

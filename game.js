@@ -320,6 +320,8 @@ window.onload = function () {
             });
             //js dynamic styling 
             //pit mouseover listener
+            //TODO ideas
+            // - menu options for adjusting how pit highlighting works
             e.addEventListener('mouseover', (e) => {
                 if (!e.target.classList.contains('marble')) {
                     //highlight pit
